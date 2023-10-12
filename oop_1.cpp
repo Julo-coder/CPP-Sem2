@@ -10,33 +10,95 @@ Numer rejestracyjny jest ciągiem 4 znaków (liter lub cyfr) bez spacji. Moc jes
 Wszystkie atrybuty powinny być zadeklarowane jako zmienne prywatne, a jakikolwiek dostęp spoza klasy powinien się odbywać poprzez odpowiednie funkcje dostępowe.
 */
 
-enum types { B, D, E, H};
+enum types {B, D, E, H};
 
-
-class Car {
+class Cars {
     string Number;
     int Power;
     double Weigth;
     types Type;
 
     public:
-    Car (string number, int power, double weigth, types type){
-        Number = number;
-        Power = power;
-        Weigth = weigth;
-        Type = type;
+    Cars(){};
+    Cars(string n, int p, double w, types t){
+        Number = n;
+        Power = p;
+        Weigth = w;
+        Type = t;
     }
-    void showClass(){
-        cout << Number << endl;
-        cout << Power << endl;
-        cout << Weigth << endl;
-        cout << Type << endl;
+
+    string getNumber(){
+        return Number;
     }
-    
+
+    int getPower(){
+        return Power;
+    }
+
+    double getWeigth(){
+        return Weigth;
+    }
+
+    types getType(){
+        return Type;
+    }
 };
 
+/*
+Klasa przedstawiająca katalog samochodów powinna zawierać:
+
+Tablicę o rozmiarze 6 przechowującą samochody w kolejności ich dodania.
+Funkcję wyświetlającą numery rejestracyjne i moce silników wszystkich samochodów z katalogu (oddzielone spacjami) zgodnie i z ich miejscem w tablicy.
+Funkcję dodającą do katalogu samochód podany jako argument funkcji.
+Funkcję usuwającą z katalogu samochód podany jako argument funkcji. W przypadku, gdy usunięty element nie jest ostatnim w tablicy, w puste miejsce wstawiany jest ostatni element z tablicy.
+*/
+
+class Catalog {
+    Cars car[6];
+    int count{0};
+
+    public:
+    Catalog(){};
+    void show(){
+        for(int i = 0; i < 6; i++){
+            cout << car[i].getNumber() << " " << car[i].getPower() << " "; 
+        }
+    }
+
+    void add(Cars &c){
+        car[count] = c;
+        count++;
+    }
+};
 
 int main(){
+    Catalog cat;
+    string number, kind;
+    int power;
+    double weigth;
+    
+    for(int i = 0; i < 6; i++){
+        cin >> number >> power >> weigth >> kind;
+        
+        if(kind == "B"){
+            Cars car(number, power, weigth, types::B);
+            cat.add(car);
+        }
+        if(kind == "D"){
+            Cars car(number, power, weigth, types::D);
+            cat.add(car);
+        }
+        if(kind == "E"){
+            Cars car(number, power, weigth, types::E);
+            cat.add(car);
+        }
+        if(kind == "H"){
+            Cars car(number, power, weigth, types::H);
+            cat.add(car);
+        }
+        
+    }
+    cat.show();
     
     return 0;
 }
