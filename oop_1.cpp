@@ -60,7 +60,7 @@ class Catalog {
     public:
     Catalog(){};
     void show(){
-        for(int i = 0; i < 6; i++){
+        for(int i = 0; i < count; i++){
             cout << car[i].getNumber() << " " << car[i].getPower() << " "; 
         }
     }
@@ -69,12 +69,22 @@ class Catalog {
         car[count] = c;
         count++;
     }
+
+    void del(int d){
+       if(d == 6){
+            count--;
+        }else{
+            count--;
+            car[d] = car[count];
+        }
+        
+    }
 };
 
 int main(){
     Catalog cat;
     string number, kind;
-    int power;
+    int power, rem;
     double weigth;
     
     for(int i = 0; i < 6; i++){
@@ -116,6 +126,8 @@ int main(){
         }
         
     }
+    cin >> rem;
+    cat.del(rem);
     cat.show();
 
     return 0;
