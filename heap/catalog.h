@@ -1,12 +1,12 @@
 #pragma once
+#include "../heap/cars.h"
 #include <iostream>
-#include "cars.h"
 using namespace std;
 
 
 class Catalog {
     Cars car[7];
-    int count{0};
+    int count = 0;
 
     public:
     Catalog();

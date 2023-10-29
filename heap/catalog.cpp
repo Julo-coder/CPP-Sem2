@@ -1,6 +1,4 @@
-#include <iostream>
-#include "catalog.h"
-using namespace std;
+#include "../heap/catalog.h"
 
 Catalog::Catalog(){}
 
