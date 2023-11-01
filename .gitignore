@@ -8,3 +8,6 @@ oop_1.dSYM/
 /other/test
 /other/main
 /zad4/.vscode
+.idea/
+/zad_4/cmake-build-debug
+/zad4/CMakeLists.txt
