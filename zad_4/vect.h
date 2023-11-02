@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+using namespace std;
 /*
 Napisz klasę Wektor, przechowującą tablicę liczb rzeczywistych o rozmiarze MAX_ROZMIAR równym 100 (zmienna prywatna) oraz zmienną prywatną przechowującą informację o aktualnej
 liczbie elementów przechowywanych w tablicy. Klasa Wektor powinna udostępniać następujące metody:
@@ -22,16 +23,21 @@ class Wektor{
     static const int MAX_ROZMIAR = 100;
     double tab[MAX_ROZMIAR];
     int akt_rozm;
-    
-    public:
-        Wektor(int rozm);
-        double podaj(int indeks);
-        void wpisz(int indeks, double wartosc);
-        int rozmiar();
-        void dodaj(const Wektor &v);
-        void show();
-        void operator+=(const Wektor &v);
-        void operator-=(const Wektor &v);
-        void operator=(const Wektor &v);
-        void operator[](const Wektor &v);
+
+public:
+    Wektor(int rozm);
+    double podaj(int indeks) const;
+    void wpisz(int indeks, double wartosc);
+    int rozmiar() const;
+    void dodaj(const Wektor &v);
+    void show();
+    Wektor& operator+=(const Wektor &v);
+    Wektor& operator-=(const Wektor &v);
+    Wektor& operator=(const Wektor &v);
+    double& operator[](int indeks);
 };
+
+ostream& operator<<(ostream& z,const Wektor& v );
+Wektor operator-(const Wektor& pier, const Wektor& dru);
+Wektor operator+(const Wektor& pier, const Wektor& dru);
+Wektor operator!(Wektor& v);
