@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.26)
+project(CPP_Sem2)
+
+set(CMAKE_CXX_STANDARD 14)
+
+include_directories(.)
+
+add_executable(CPP_Sem2
+        zad6/zad_6.cpp)
