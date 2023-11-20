@@ -1,2 +1,0 @@
-C:/CPP-Sem2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/CPP-Sem2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
