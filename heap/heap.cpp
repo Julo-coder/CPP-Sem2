@@ -7,7 +7,7 @@ using namespace std;
 int main(){
     Catalog cat;
     string number, kind;
-    int power, rem;
+    int power;
     double weigth;
     
     for(int i = 0; i < 6; i++){
