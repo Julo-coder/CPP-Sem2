@@ -10,5 +10,7 @@ add_executable(CPP_Sem2
         #powtorka/zad1.cpp
         #powtorka/zad2.cpp
         #other/array.cpp
-        zad7/zad_7.cpp
+        #zad7/zad_7.cpp
+        #zad9/zad9.cpp
+        #zad10/zad10.cpp
 )
