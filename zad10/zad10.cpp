@@ -137,7 +137,7 @@ int main() {
     int M, N;
     float real, imag;
 
-    std::cin >> M;
+    cin >> M;
     for (int i = 0; i < M; ++i) {
         cin >> real >> imag;
         list.insert(ComplexNumber(real, imag));
