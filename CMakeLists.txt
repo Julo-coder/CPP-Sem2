@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(.)
 
 add_executable(CPP_Sem2
-        zad11/zad11.cpp
+        #zad11/zad11.cpp
+        zad12/zad12.cpp
         #zad6/zad_6.cpp
         #powtorka/zad1.cpp
         #powtorka/zad2.cpp
