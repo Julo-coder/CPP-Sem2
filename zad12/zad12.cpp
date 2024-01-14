@@ -20,7 +20,14 @@ public:
 
 template <class Typ>
 class Tree{
-
+private:
+    Node<Typ>* minValueNode(Node<Typ>* node) {
+        Node<Typ>* current = node;
+        while (current && current->leftchild != nullptr) {
+            current = current->leftchild;
+        }
+        return current;
+    }
 public:
     Node<Typ>* root;
     Tree(){
@@ -59,53 +66,36 @@ public:
 
     }
 
-//    Node<Typ>* usun(Node<Typ>* root, Typ k){
-//            if (root == NULL)
-//                return root;
-//
-//
-//            if (root->data >= k) {
-//                root->leftchild = usun(root->leftchild, k);
-//                return root;
-//            }
-//            else if (root->data < k) {
-//                root->rightchild = usun(root->rightchild, k);
-//                return root;
-//            }
-//
-//
-//            if (root->leftchild == NULL) {
-//                Node<Typ>* temp = root->rightchild;
-//                delete root;
-//                return temp;
-//            }
-//            else if (root->rightchild == NULL) {
-//                Node<Typ>* temp = root->leftchild;
-//                delete root;
-//                return temp;
-//            }
-//
-//            else {
-//
-//                Node<Typ>* succParent = root;
-//                Node<Typ>* succ = root->rightchild;
-//                while (succ->leftchild != NULL) {
-//                    succParent = succ;
-//                    succ = succ->leftchild;
-//                }
-//
-//                if (succParent != root)
-//                    succParent->leftchild = succ->rightchild;
-//                else
-//                    succParent->rightchild = succ->rightchild;
-//
-//
-//                root->data = succ->data;
-//
-//                delete succ;
-//                return root;
-//            }
-//    }
+    Node<Typ>* usun(Node<Typ>* root, Typ k) {
+        if (root == nullptr) {
+            return root;
+        }
+
+
+        if (k < root->data) {
+            root->leftchild = usun(root->leftchild, k);
+        } else if (k > root->data) {
+            root->rightchild = usun(root->rightchild, k);
+        } else {
+            if (root->leftchild == nullptr) {
+                Node<Typ>* temp = root->rightchild;
+                delete root;
+                return temp;
+            } else if (root->rightchild == nullptr) {
+                Node<Typ>* temp = root->leftchild;
+                delete root;
+                return temp;
+            }
+
+            Node<Typ>* temp = minValueNode(root->rightchild);
+
+            root->data = temp->data;
+
+
+            root->rightchild = usun(root->rightchild, temp->data);
+        }
+        return root;
+    }
 
     int najdluzsza() {
         return najdluzszaSciezka(root) - 1;
@@ -128,18 +118,6 @@ public:
 
     int najkrotsza() {
         return najkrotszaSciezka(root);
-//        if (node == nullptr) {
-//            return INT_MAX; // Return a large value
-//        }
-//
-//        if (node->leftchild == nullptr && node->rightchild == nullptr) {
-//            return 1; // Leaf node found
-//        }
-//
-//        int leftDepth = najkrotsza(node->leftchild);
-//        int rightDepth = najkrotsza(node->rightchild);
-
-//        return 1 + min(leftDepth, rightDepth);
     }
 
     int najkrotszaSciezka(Node<Typ> *val) {
@@ -156,9 +134,6 @@ public:
             return 1 + lewaSciezka;
         }
     }
-
-
-
 
     void preorder(Node<Typ>* node){
         if (node == NULL)
@@ -198,23 +173,28 @@ int main(){
         drzewko.dodaj(d);
     }
 
-    drzewko.preorder(drzewko.root);
-    cout << " ";
-//    cin >> M;
-//    switch(M){
-//        case 0:{
-//            drzewko.preorder(drzewko.root);
-//            break;
-//        }
-//        case 1:{
-//            drzewko.inorder(drzewko.root);
-//            break;
-//        }
-//        case 2:{
-//            drzewko.postorder(drzewko.root);
-//            break;
-//        }
-//    }
+    cin>>L;
+    for(int i=0; i < L; i++){
+        double d;
+        cin>>d;
+        drzewko.root = drzewko.usun(drzewko.root, d);
+    }
+
+    cin >> M;
+    switch(M){
+        case 0:{
+            drzewko.preorder(drzewko.root);
+            break;
+        }
+        case 1:{
+            drzewko.inorder(drzewko.root);
+            break;
+        }
+        case 2:{
+            drzewko.postorder(drzewko.root);
+            break;
+        }
+    }
 
     cout << drzewko.najdluzsza()<<" ";
     cout << drzewko.najkrotsza();
